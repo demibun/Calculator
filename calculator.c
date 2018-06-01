@@ -51,7 +51,7 @@ int main(void)
 	int num[100] = { 0 }, i, j=0, num_len = 0, len = 0, lenf = 0, 
 		count[100] = { 0 } /* 자릿수 */, index = 0, oper[10] = { 0 }, sum=0, oper_index=0, result=0, numIdx;
 	
-	printf("사용법: 숫자와 연산자를 입력하고 엔터를 누르세요.\nex) 32 * 532 / 2 - 7 + 8"); 
+	printf("사용법: 숫자와 연산자를 입력하고 엔터를 누르세요.\nex) 32 * 532 / 2 - 7 + 8\n\n"); 
 	scanf(" %[^\n]", geti); 
 
 	len = strlen(geti); 
