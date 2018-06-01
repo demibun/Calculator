@@ -19,9 +19,9 @@ int power(int a, int b)
 	}
 	return result;
 }
-void put_int(int count[], char getf[], int lenf, int num[])
+void put_int(int count[], char getf[], int lenf, int num[],int numnum)
 {
-	int i, j, sum = 0;
+	int i, j, sum = 0, count_rep =0;
 	for (j = 0; j < lenf; j++)
 	{
 		for (i = 0; i < count[j]; i++)
@@ -32,6 +32,15 @@ void put_int(int count[], char getf[], int lenf, int num[])
 
 		}
 		sum = 0;
+		for (i = 0; i < lenf - count[j] - 1; i++)
+		{
+			getf[i] = getf[i + count[j] + 1];
+			
+		}
+		count_rep++;
+		if (count_rep == numnum)
+			break;
+
 	}
 
 	
@@ -40,8 +49,8 @@ int main(void)
 {
 	char geti[100] /* 공백 포함 입력 */, getf[100] = { 0 }; /* 공백 제거 */
 	int num[100] = { 0 }, i, j=0, num_len = 0, len = 0, lenf = 0, 
-		count[100] = { 0 } /* 자릿수 */, index = 0, oper[10] = { 0 }, sum=0, oper_index=0;
-
+		count[100] = { 0 } /* 자릿수 */, index = 0, oper[10] = { 0 }, sum=0, oper_index=0, result=0, numIdx;
+	
 	scanf(" %[^\n]", geti); // 12*34
 
 	len = strlen(geti); 
@@ -56,7 +65,6 @@ int main(void)
 		
 	}
 	lenf = strlen(getf);
-	printf("%s", getf);
 	
 	for (i = 0; i < lenf; i++) // 모든 숫자와 연산자 확인
 	{
@@ -76,34 +84,74 @@ int main(void)
 	}
 	count[index-1]++; 
 
-	for (i = 0; i < lenf; i++)
+	put_int(count, getf, lenf, num,oper_index+1);
+	numIdx = oper_index + 1;
+	for (i = 0; i < oper_index; i++)
+
 	{
-		printf("\ncount[%d] = %d\n", i, count[i]);
-	}
-	
-	put_int(count, getf, lenf, num);
-	for (i = 0; i < lenf; i++)
-	{
-		for (j = 0; j < i; j++)
+
+		if (oper[i] == '*')
+
 		{
-			if ((getf[i] == '+') || (getf[i] == '-') || (getf[i] == '*') || (getf[i] == '/'))
-			{
-				
-			}
+
+			num[i] = num[i] * num[i + 1];
+
+			for (j = i + 1; j < numIdx; j++)
+
+				num[j] = num[j + 1];
+
+			numIdx -= 1;
+
+			for (j = i; j < oper_index; j++)
+
+				oper[j] = oper[j + 1];
+
+			oper_index -= 1;
+
+			i -= 1;
+
 		}
-	}
-	
-	
-	for (i = 0; i < 2; i++)
-	{
-		printf("num%d: %d ", i, num[i]);
-	}
-	printf("\n");
-	for (i = 0; i < 4; i++)
-	{
-		printf("oper: %c", oper[i]);
+
+		else if (oper[i] == '/')
+
+		{
+
+			num[i] = num[i] / num[i + 1];
+
+			for (j = i + 1; j < numIdx; j++)
+
+				num[j] = num[j + 1];
+
+			numIdx -= 1;
+
+			for (j = i; j <oper_index; j++)
+
+				oper[j] = oper[j + 1];
+
+			oper_index -= 1;
+
+			i -= 1;
+
+		}
+
 	}
 
+	result = num[0];
+
+	for (i = 0; i < oper_index; i++)
+
+	{
+
+		if (oper[i] == '+')
+
+			result += num[i + 1];
+
+		else if (oper[i] == '-')
+
+			result -= num[i + 1];
+
+	}
+	printf("%d\n", result);
 
 
 
