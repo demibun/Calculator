@@ -47,11 +47,12 @@ void put_int(int count[], char getf[], int lenf, int num[],int numnum)
 }
 int main(void)
 {
-	char geti[100] /* °ø¹é Æ÷ÇÔ ÀÔ·Â */, getf[100] = { 0 }; /* °ø¹é Á¦°Å */
+	char geti[100] /* ê³µë°± í¬í•¨ ì…ë ¥ */, getf[100] = { 0 }; /* ê³µë°± ì œê±° */
 	int num[100] = { 0 }, i, j=0, num_len = 0, len = 0, lenf = 0, 
-		count[100] = { 0 } /* ÀÚ¸´¼ö */, index = 0, oper[10] = { 0 }, sum=0, oper_index=0, result=0, numIdx;
+		count[100] = { 0 } /* ìë¦¿ìˆ˜ */, index = 0, oper[10] = { 0 }, sum=0, oper_index=0, result=0, numIdx;
 	
-	scanf(" %[^\n]", geti); // 12*34
+	printf("ì‚¬ìš©ë²•: ìˆ«ìì™€ ì—°ì‚°ìë¥¼ ì…ë ¥í•˜ê³  ì—”í„°ë¥¼ ëˆ„ë¥´ì„¸ìš”.\nex) 32 * 532 / 2 - 7 + 8"); 
+	scanf(" %[^\n]", geti); 
 
 	len = strlen(geti); 
 
@@ -66,7 +67,7 @@ int main(void)
 	}
 	lenf = strlen(getf);
 	
-	for (i = 0; i < lenf; i++) // ¸ğµç ¼ıÀÚ¿Í ¿¬»êÀÚ È®ÀÎ
+	for (i = 0; i < lenf; i++) // ëª¨ë“  ìˆ«ìì™€ ì—°ì‚°ì í™•ì¸
 	{
 	   if ((getf[i] == '+') || (getf[i] == '-') || (getf[i] == '*') || (getf[i] == '/') || getf[i+1] == '\0')
 		{
